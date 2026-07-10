@@ -2,3 +2,28 @@
   text-align: center;
   margin-top: 20px;
 }
+
+.footer-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.primary-btn,
+.secondary-btn {
+  margin-top: 0;
+  width: 100%;
+}
+
+.secondary-btn {
+  background: #f59e0b;
+}
+
+.secondary-btn:hover {
+  background: #d97706;
+}
+
+.secondary-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}

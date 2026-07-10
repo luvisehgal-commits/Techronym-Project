@@ -7,6 +7,7 @@ function GameHeader({
   score,
   selectedCategory,
   selectedDifficulty,
+  timeLeft,
 }) {
   return (
     <>
@@ -16,15 +17,13 @@ function GameHeader({
         Question {currentQuestion} of {totalQuestions}
       </h3>
 
-      <ProgressBar
-        current={currentQuestion}
-        total={totalQuestions}
-      />
+      <ProgressBar current={currentQuestion} total={totalQuestions} />
 
       <div className="game-info">
         <span>⭐ Score: {score}</span>
         <span>📂 {selectedCategory}</span>
         <span>🎯 {selectedDifficulty}</span>
+        <span className="timer-badge">⏱️ {timeLeft}s</span>
       </div>
     </>
   );

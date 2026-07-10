@@ -4,29 +4,37 @@ function GameFooter({
   answeredCorrectly,
   checkAnswer,
   nextQuestion,
+  skipQuestion,
   currentQuestionIndex,
   totalQuestions,
   result,
+  isQuestionResolved,
+  skipsRemaining,
 }) {
   return (
     <>
-      {!answeredCorrectly ? (
-        <button onClick={checkAnswer}>
-          Check Answer
-        </button>
+      {!isQuestionResolved ? (
+        <div className="footer-actions">
+          <button onClick={checkAnswer} className="primary-btn">
+            Check Answer
+          </button>
+          <button
+            onClick={skipQuestion}
+            className="secondary-btn"
+            disabled={skipsRemaining <= 0}
+          >
+            Skip Question ({skipsRemaining})
+          </button>
+        </div>
       ) : (
-        <button onClick={nextQuestion}>
+        <button onClick={nextQuestion} className="primary-btn">
           {currentQuestionIndex === totalQuestions - 1
             ? "Finish Quiz"
             : "Next Question"}
         </button>
       )}
 
-      {result && (
-        <h3 className="result-text">
-          {result}
-        </h3>
-      )}
+      {result && <h3 className="result-text">{result}</h3>}
     </>
   );
 }
