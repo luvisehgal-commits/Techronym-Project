@@ -1,0 +1,44 @@
+.word-row {
+  margin: 25px 0;
+  cursor: text;
+}
+
+.first-letter {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2563eb;
+  margin-bottom: 10px;
+}
+
+.letter-boxes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.letter-box {
+  width: 42px;
+  height: 50px;
+  border: 2px solid #2563eb;
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 24px;
+  font-weight: bold;
+
+  transition: .2s;
+}
+
+.word-row:hover .letter-box {
+  border-color: #1d4ed8;
+}
+
+.hidden-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}

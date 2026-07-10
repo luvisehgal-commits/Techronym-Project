@@ -1,0 +1,30 @@
+.review-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
+}
+
+.review-card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,.1);
+}
+
+.review-card h2 {
+  color: #2563eb;
+}
+
+.review-card p {
+  margin: 10px 0;
+}
+
+.review-container button {
+  padding: 12px 24px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}

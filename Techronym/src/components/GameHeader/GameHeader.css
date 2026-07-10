@@ -1,0 +1,12 @@
+.title {
+  text-align: center;
+  color: #2563eb;
+  margin-bottom: 20px;
+}
+
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  font-weight: bold;
+}
