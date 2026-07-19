@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import "./WordRow.css";
 
 function WordRow({
@@ -8,48 +7,68 @@ function WordRow({
   setUserAnswers,
   answeredCorrectly,
 }) {
-  const inputRef = useRef(null);
+  const currentWord = userAnswers[index] || "";
 
-  const handleClick = () => {
-    if (!answeredCorrectly) {
-      inputRef.current.focus();
+  const handleChange = (letterIndex, value) => {
+    value = value.replace(/[^a-zA-Z]/g, "").toUpperCase();
+
+    const letters = currentWord.split("");
+
+    letters[letterIndex] = value;
+
+    const newWord = letters.join("").slice(0, word.length - 1);
+
+    const updatedAnswers = [...userAnswers];
+    updatedAnswers[index] = newWord;
+
+    setUserAnswers(updatedAnswers);
+
+    // Move to next box automatically
+    if (value && letterIndex < word.length - 2) {
+      const next = document.getElementById(
+        `input-${index}-${letterIndex + 1}`
+      );
+
+      if (next) next.focus();
     }
   };
 
-  const handleChange = (e) => {
-    let value = e.target.value;
+  const handleKeyDown = (e, letterIndex) => {
+    if (e.key === "Backspace") {
+      if (!currentWord[letterIndex] && letterIndex > 0) {
+        const prev = document.getElementById(
+          `input-${index}-${letterIndex - 1}`
+        );
 
-    value = value.replace(/[^a-zA-Z]/g, "");
-    value = value.slice(0, word.length - 1);
-
-    const updated = [...userAnswers];
-    updated[index] = value;
-    setUserAnswers(updated);
+        if (prev) prev.focus();
+      }
+    }
   };
 
   return (
-    <div className="word-row" onClick={handleClick}>
+    <div className="word-row">
 
       <div className="first-letter">
         {word.charAt(0)}
       </div>
 
       <div className="letter-boxes">
-        {Array.from({ length: word.length - 1 }).map((_, i) => (
-          <div className="letter-box" key={i}>
-            {userAnswers[index][i]?.toUpperCase() || ""}
-          </div>
-        ))}
-      </div>
 
-      <input
-        ref={inputRef}
-        className="hidden-input"
-        type="text"
-        value={userAnswers[index]}
-        onChange={handleChange}
-        disabled={answeredCorrectly}
-      />
+        {Array.from({ length: word.length - 1 }).map((_, i) => (
+          <input
+            key={i}
+            id={`input-${index}-${i}`}
+            className="letter-box"
+            type="text"
+            maxLength={1}
+            value={currentWord[i] || ""}
+            disabled={answeredCorrectly}
+            onChange={(e) => handleChange(i, e.target.value)}
+            onKeyDown={(e) => handleKeyDown(e, i)}
+          />
+        ))}
+
+      </div>
 
     </div>
   );

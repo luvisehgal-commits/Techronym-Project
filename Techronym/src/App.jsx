@@ -6,13 +6,21 @@ import Category from "./pages/Category/Category";
 import Difficulty from "./pages/Difficulty/Difficulty";
 import "./App.css";
 import Review from "./pages/Review/Review";
+import Leaderboard from "./pages/Leaderboard/Leaderboard";
 
 function App() {
   const [screen, setScreen] = useState("home");
   const [score, setScore] = useState(0);
+  const [lives, setLives] = useState(3);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [quizHistory, setQuizHistory] = useState([]);
+ const restartGame = () => {
+  setScore(0);
+  setLives(3);
+  setQuizHistory([]);
+  setScreen("home");
+};
 
   return (
     <>
@@ -22,7 +30,11 @@ function App() {
     setScore={setScore}
   />
 )}
-
+{screen === "leaderboard" && (
+  <Leaderboard
+    setScreen={setScreen}
+  />
+)}
 {screen === "category" && (
   <Category
     setScreen={setScreen}
@@ -32,10 +44,12 @@ function App() {
 )}
 
 {screen === "game" && (
-  <Game
+ <Game
   setScreen={setScreen}
   score={score}
   setScore={setScore}
+  lives={lives}
+  setLives={setLives}
   selectedCategory={selectedCategory}
   selectedDifficulty={selectedDifficulty}
   quizHistory={quizHistory}
@@ -47,8 +61,12 @@ function App() {
   <Result
   setScreen={setScreen}
   score={score}
+  setScore={setScore}
+  lives={lives}
+  setLives={setLives}
   selectedCategory={selectedCategory}
   selectedDifficulty={selectedDifficulty}
+  quizHistory={quizHistory}
 />
 )}
 

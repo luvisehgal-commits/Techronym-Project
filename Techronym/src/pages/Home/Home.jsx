@@ -1,19 +1,31 @@
 import "./Home.css";
+
 function Home({ setScreen, setScore }) {
   return (
     <div className="home">
-      <h1>IT Acronym Challenge</h1>
+      <div className="home-card">
+        <h1>🚀 Techronym</h1>
 
-      <p>Test your knowledge of IT acronyms.</p>
+        <p>
+          Test your knowledge of IT acronyms and improve your technical vocabulary.
+        </p>
 
-      <button
-        onClick={() => {
-          setScore(0);
-          setScreen("category");
-        }}
-      >
-        Start Game
-      </button>
+        <button
+          className="start-btn"
+          onClick={() => {
+            setScore(0);
+            setScreen("category");
+          }}
+        >
+          Start Game
+        </button>
+        <button
+  className="leaderboard-btn"
+  onClick={() => setScreen("leaderboard")}
+>
+  🏆 Leaderboard
+</button>
+      </div>
     </div>
   );
 }

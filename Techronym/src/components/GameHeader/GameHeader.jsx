@@ -5,10 +5,11 @@ function GameHeader({
   currentQuestion,
   totalQuestions,
   score,
+  lives,
   selectedCategory,
   selectedDifficulty,
   timeLeft,
-}) {
+})  {
   return (
     <>
       <h1 className="title">TECHRONYM</h1>
@@ -16,6 +17,9 @@ function GameHeader({
       <h3>
         Question {currentQuestion} of {totalQuestions}
       </h3>
+      <p className="lives">
+      {"❤️".repeat(lives)}
+     </p>
 
       <ProgressBar current={currentQuestion} total={totalQuestions} />
 

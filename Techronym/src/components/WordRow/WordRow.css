@@ -1,13 +1,22 @@
 .word-row {
-  margin: 25px 0;
-  cursor: text;
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
 }
 
 .first-letter {
-  font-size: 28px;
+  width: 45px;
+  height: 45px;
+  border: 2px solid #2563eb;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
   font-weight: bold;
-  color: #2563eb;
-  margin-bottom: 10px;
+  color: white;
+  background: #2563eb;
+  margin-right: 10px;
 }
 
 .letter-boxes {
@@ -17,28 +26,24 @@
 }
 
 .letter-box {
-  width: 42px;
-  height: 50px;
+  width: 40px;
+  height: 45px;
+
   border: 2px solid #2563eb;
   border-radius: 8px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 24px;
+  text-align: center;
+  font-size: 22px;
   font-weight: bold;
 
-  transition: .2s;
+  outline: none;
+  background: white;
+
+  text-transform: uppercase;
 }
 
-.word-row:hover .letter-box {
+.letter-box:focus {
   border-color: #1d4ed8;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
 }
 
-.hidden-input {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-}

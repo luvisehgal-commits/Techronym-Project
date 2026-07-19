@@ -1,25 +1,29 @@
+
 import "./Result.css";
-import questions from "../../data";
+
 
 function Result({
   setScreen,
   score,
+  setScore,
+  lives,
+  setLives,
   selectedCategory,
   selectedDifficulty,
+  quizHistory,
 }) {
   // Questions for the selected category and difficulty
-  const filteredQuestions = questions.filter(
-    (question) =>
-      question.category === selectedCategory &&
-      question.difficulty === selectedDifficulty
-  );
+ 
+  const totalQuestions = quizHistory.length;
 
-  const totalQuestions = filteredQuestions.length;
+const correctAnswers = quizHistory.filter(
+  (q) => q.isCorrect
+).length;
 
-  const accuracy =
-    totalQuestions > 0
-      ? Math.round((score / totalQuestions) * 100)
-      : 0;
+const accuracy =
+  totalQuestions > 0
+    ? Math.round((correctAnswers / totalQuestions) * 100)
+    : 0;
 
   let stars = "⭐";
   let message = "Keep Practicing!";
@@ -38,6 +42,7 @@ function Result({
     message = "Keep Improving!";
   }
 
+  
   return (
   <div className="result">
     <div className="result-card">
@@ -58,7 +63,7 @@ function Result({
 
         <div className="result-row">
           <span>⭐ Score</span>
-          <span>{score} / {totalQuestions}</span>
+          <span>{correctAnswers} / {totalQuestions}</span>
         </div>
 
         <div className="result-row">
@@ -77,7 +82,10 @@ function Result({
       </div>
 
       <div className="result-buttons">
-  <button onClick={() => setScreen("home")}>
+  <button onClick={() => {
+  setScore(0);
+setLives(3);
+    setScreen("home");}}>
     🔄 Play Again
   </button>
 
@@ -88,7 +96,7 @@ function Result({
   <button onClick={() => setScreen("home")}>
     🏠 Home
   </button>
-</div>Zz
+</div>
 
     </div>
   </div>
